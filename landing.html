@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TYMA Consultoria | Sustentabilidade e Créditos de Carbono para IES</title>
+    <title>TYMA Consultoria | Créditos de Carbono para Diversificação de Receita</title>
     <style>
         * {
             margin: 0;
@@ -15,23 +15,31 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #2d3748;
+            overflow-x: hidden;
         }
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, #0f766e 0%, #059669 100%);
-            padding: 1rem 0;
+            background: rgba(15, 118, 110, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(15, 118, 110, 1);
         }
 
         .header-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,81 +48,171 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
         }
 
         .logo-container img {
-            height: 50px;
+            height: 55px;
             width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
         }
 
         .logo-text {
             color: white;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
         .nav-menu a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
             font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+            /* Garantir contraste correto do botão do menu */
+            .nav-menu a.nav-cta {
+                color: #0f766e; /* verde do brand, sobre fundo branco */
+            }
+
+        .nav-menu a::after {
+            content: '';
+            width: 0;
+            height: 2px;
+            background: white;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
         }
 
-        .nav-menu a:hover {
-            opacity: 0.8;
+        .nav-menu a:hover::after {
+            width: 100%;
         }
 
         .nav-cta {
-            background: white;
-            color: #0f766e;
+            background: #ffffff;
+            color: #0f766e; /* texto verde sobre fundo branco */
             padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .nav-cta::after {
+            display: none;
         }
 
         .nav-cta:hover {
             background: #f0fdf4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.4);
         }
 
         /* Hero */
         .hero {
-            /* Fundo com GIF + overlay para legibilidade */
-            background-image: linear-gradient(135deg, rgba(15,118,110,0.85) 0%, rgba(5,150,105,0.85) 100%), url('back.gif');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 180px 2rem 100px;
+            background: linear-gradient(135deg, rgba(15,118,110,0.92) 0%, rgba(5,150,105,0.88) 100%), 
+                        url('back.gif') center/cover no-repeat;
+            background-attachment: fixed;
+            padding: 200px 3rem 120px;
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(16,185,129,0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(15,118,110,0.3) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            line-height: 1.2;
+            font-size: 4rem;
+            margin-bottom: 1.8rem;
+            font-weight: 900;
+            line-height: 1.15;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 3rem;
             opacity: 0.95;
-            font-weight: 300;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .hero-buttons {
@@ -122,50 +220,71 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
 
         .btn-primary {
             background: white;
             color: #0f766e;
-            padding: 1rem 2.5rem;
+            padding: 1.3rem 3rem;
             border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 35px;
+            font-size: 1.15rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: #f0fdf4;
         }
 
         .btn-secondary {
-            background: transparent;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 1rem 2.5rem;
-            border: 2px solid white;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            padding: 1.3rem 3rem;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 35px;
+            font-size: 1.15rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
         }
 
         .btn-secondary:hover {
             background: white;
             color: #0f766e;
+            border-color: white;
+            transform: translateY(-4px);
         }
 
         /* Sobre */
         .sobre {
-            padding: 100px 2rem;
-            background: white;
+            padding: 120px 3rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+            position: relative;
+        }
+
+        .sobre::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
         }
 
         .section-container {
@@ -175,49 +294,74 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         .section-tag {
             color: #059669;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #0f766e, #10b981);
+            border-radius: 2px;
         }
 
         .section-title {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             color: #0f766e;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
+            margin-bottom: 1.8rem;
+            font-weight: 900;
+            line-height: 1.2;
         }
 
         .section-description {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #6b7280;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
+            line-height: 1.8;
         }
 
         .sobre-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
             align-items: center;
         }
 
+        .sobre-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid #f0fdf4;
+        }
+
         .sobre-content h3 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #0f766e;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
+            font-weight: 800;
         }
 
         .sobre-content p {
             color: #4b5563;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            margin-bottom: 1.8rem;
+            line-height: 1.9;
             font-size: 1.1rem;
         }
 
@@ -225,79 +369,133 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-top: 2rem;
         }
 
         .stat-box {
-            background: #f0fdf4;
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid #059669;
+            background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 5px solid #059669;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(5,150,105,0.15);
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
+            font-size: 3rem;
+            font-weight: 900;
             color: #059669;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            position: relative;
         }
 
         .stat-label {
             color: #6b7280;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
         }
 
         /* Serviços */
         .servicos {
-            padding: 100px 2rem;
-            background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 120px 3rem;
+            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        .servicos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            border-radius: 2px;
         }
 
         .servicos-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .servico-card {
             background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border-top: 4px solid #059669;
+            padding: 3.5rem;
+            border-radius: 25px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .servico-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0f766e, #10b981);
         }
 
         .servico-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(15,118,110,0.15);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(15,118,110,0.2);
+            border-color: #d1fae5;
         }
 
         .servico-icon {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, #0f766e, #10b981);
-            border-radius: 15px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 2rem;
             color: white;
+            box-shadow: 0 8px 25px rgba(15,118,110,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .servico-card:hover .servico-icon {
+            transform: scale(1.1) rotate(-5deg);
         }
 
         .servico-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: #0f766e;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
         }
 
         .servico-card p {
             color: #6b7280;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
         }
 
         .servico-card ul {
@@ -307,9 +505,11 @@
 
         .servico-card li {
             color: #4b5563;
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.7rem 0;
+            padding-left: 2rem;
             position: relative;
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
         .servico-card li:before {
@@ -318,133 +518,220 @@
             left: 0;
             color: #059669;
             font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .servico-card:hover li {
+            color: #2d3748;
         }
 
         /* Metodologia */
         .metodologia {
-            padding: 100px 2rem;
-            background: white;
+            padding: 120px 3rem;
+            background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 50%, #f0fdf4 100%);
         }
 
         .metodologia-steps {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 3rem;
+            margin-top: 4rem;
             position: relative;
+        }
+
+        .metodologia-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(90deg, #0f766e, #10b981, #0f766e);
+            z-index: 0;
         }
 
         .step {
             text-align: center;
             position: relative;
+            z-index: 1;
         }
 
         .step-number {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             background: linear-gradient(135deg, #0f766e, #10b981);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 0 auto 1.5rem;
-            position: relative;
-            z-index: 1;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 30px rgba(15,118,110,0.3);
+            transition: all 0.4s ease;
+            border: 5px solid white;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.15) rotate(360deg);
+            box-shadow: 0 15px 40px rgba(15,118,110,0.4);
         }
 
         .step h4 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: #0f766e;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
         }
 
         .step p {
             color: #6b7280;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
         /* Benefícios */
         .beneficios {
-            padding: 100px 2rem;
+            padding: 120px 3rem;
             background: linear-gradient(135deg, #0f766e 0%, #059669 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .beneficios::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .beneficios::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         .beneficios-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 3rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
         }
 
         .beneficio-item {
             display: flex;
-            gap: 1.5rem;
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
+            gap: 2rem;
+            background: rgba(255,255,255,0.12);
+            padding: 2.5rem;
+            border-radius: 20px;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .beneficio-item:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateX(10px);
         }
 
         .beneficio-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: white;
             color: #0f766e;
-            border-radius: 12px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
 
         .beneficio-content h4 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .beneficio-content p {
-            opacity: 0.9;
-            line-height: 1.6;
+            opacity: 0.95;
+            line-height: 1.8;
+            font-size: 1.05rem;
         }
 
         /* CTA Section */
         .cta-section {
-            padding: 100px 2rem;
-            background: #f0fdf4;
+            padding: 120px 3rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
             text-align: center;
         }
 
         .cta-box {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
-            padding: 4rem;
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(15,118,110,0.15);
+            padding: 5rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(15,118,110,0.15);
+            border: 2px solid #d1fae5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 6px;
+            background: linear-gradient(90deg, #0f766e, #10b981, #0f766e);
         }
 
         .cta-box h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: #0f766e;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
+            font-weight: 900;
         }
 
         .cta-box p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #6b7280;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
+            line-height: 1.7;
         }
 
         /* Footer */
         .footer {
-            background: #1f2937;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
             color: white;
-            padding: 4rem 2rem 2rem;
+            padding: 5rem 3rem 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         }
 
         .footer-content {
@@ -452,48 +739,53 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 3rem;
+            gap: 5rem;
+            margin-bottom: 4rem;
         }
 
         .footer-about h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            font-weight: 800;
         }
 
         .footer-about p {
             opacity: 0.8;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
+            border-radius: 12px;
             color: white;
             text-decoration: none;
             transition: all 0.3s;
+            font-size: 1.3rem;
         }
 
         .social-links a:hover {
             background: #059669;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(5,150,105,0.3);
         }
 
         .footer-links h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
         }
 
         .footer-links ul {
@@ -501,29 +793,46 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .footer-links a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-size: 1.05rem;
         }
 
         .footer-links a:hover {
             color: white;
+            padding-left: 5px;
         }
 
         .footer-bottom {
             max-width: 1400px;
             margin: 0 auto;
-            padding-top: 2rem;
+            padding-top: 3rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             text-align: center;
             opacity: 0.7;
+            font-size: 1rem;
         }
 
         /* Mobile */
+        @media (max-width: 1024px) {
+            .servicos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metodologia-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .metodologia-steps::before {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -533,11 +842,15 @@
                 font-size: 2.5rem;
             }
 
-            .sobre-grid {
-                grid-template-columns: 1fr;
+            .hero {
+                padding: 160px 2rem 80px;
             }
 
-            .servicos-grid {
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .sobre-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -551,14 +864,30 @@
 
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 3rem;
             }
+
+            .cta-box {
+                padding: 3rem 2rem;
+            }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="header-content">
             <div class="logo-container">
                 <img src="logo.png" alt="TYMA Logo">
@@ -579,11 +908,18 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Transforme Sustentabilidade em Retenção de Alunos</h1>
-            <p class="hero-subtitle">Consultoria especializada em créditos de carbono para Instituições de Ensino Superior</p>
+            <div class="hero-badge">🌱 INOVAÇÃO EM SUSTENTABILIDADE</div>
+            <h1>Transforme Sustentabilidade em Nova Receita</h1>
+            <p class="hero-subtitle">Consultoria especializada em créditos de carbono para Instituições de Ensino Superior. Convertemos desperdícios em receita recorrente com ativos de carbono que sua IES ainda não aproveita.</p>
             <div class="hero-buttons">
-                <button class="btn-primary" onclick="solicitarRelatorio()">📊 Solicite seu Relatório</button>
-                <a href="#servicos" class="btn-secondary">Conheça Nossos Serviços</a>
+                <button class="btn-primary" onclick="solicitarRelatorio()">
+                    <span>📊</span>
+                    <span>Solicite seu Relatório</span>
+                </button>
+                <a href="#servicos" class="btn-secondary">
+                    <span>🔍</span>
+                    <span>Conheça Nossos Serviços</span>
+                </a>
             </div>
         </div>
     </section>
@@ -591,31 +927,31 @@
     <!-- Sobre -->
     <section id="sobre" class="sobre">
         <div class="section-container">
-            <div class="section-header">
-                <div class="section-tag">Quem Somos</div>
+            <div class="section-header reveal">
+                <div class="section-tag">QUEM SOMOS</div>
                 <h2 class="section-title">Sobre a TYMA Consultoria</h2>
-                <p class="section-description">Pioneiros em conectar sustentabilidade, créditos de carbono e retenção estudantil no ensino superior brasileiro</p>
+                <p class="section-description">Pioneiros em conectar sustentabilidade e créditos de carbono à diversificação de receita no ensino superior brasileiro</p>
             </div>
             <div class="sobre-grid">
-                <div class="sobre-content">
+                <div class="sobre-content reveal">
                     <h3>Nossa Missão</h3>
-                    <p>A TYMA é uma consultoria especializada em transformar o desperdício de recursos em Instituições de Ensino Superior em oportunidades financeiras através de créditos de carbono.</p>
-                    <p>Nosso foco é criar um ciclo virtuoso: identificamos desperdícios, convertemos em créditos de carbono, e direcionamos os recursos para programas de permanência estudantil, reduzindo a evasão e fomentando a pesquisa.</p>
+                    <p>A TYMA é uma consultoria especializada em transformar desperdícios de recursos em Instituições de Ensino Superior em oportunidades financeiras por meio de créditos de carbono.</p>
+                    <p>Nosso foco é simples: identificamos oportunidades, estruturamos projetos elegíveis e convertimos em créditos de carbono certificados, abrindo uma nova linha de receita para sua IES.</p>
                 </div>
                 <div class="sobre-stats">
-                    <div class="stat-box">
+                    <div class="stat-box reveal">
                         <div class="stat-number">+50</div>
                         <div class="stat-label">IES Analisadas</div>
                     </div>
-                    <div class="stat-box">
+                    <div class="stat-box reveal">
                         <div class="stat-number">30%</div>
-                        <div class="stat-label">Melhoria na Retenção</div>
+                        <div class="stat-label">Nova fonte de receita</div>
                     </div>
-                    <div class="stat-box">
+                    <div class="stat-box reveal">
                         <div class="stat-number">R$ 2M</div>
                         <div class="stat-label">Em Créditos Gerados</div>
                     </div>
-                    <div class="stat-box">
+                    <div class="stat-box reveal">
                         <div class="stat-number">100%</div>
                         <div class="stat-label">Sustentável</div>
                     </div>
@@ -627,43 +963,43 @@
     <!-- Serviços -->
     <section id="servicos" class="servicos">
         <div class="section-container">
-            <div class="section-header">
-                <div class="section-tag">Soluções</div>
+            <div class="section-header reveal">
+                <div class="section-tag">SOLUÇÕES</div>
                 <h2 class="section-title">Nossos Serviços</h2>
-                <p class="section-description">Oferecemos soluções completas para transformar sua IES</p>
+                <p class="section-description">Oferecemos soluções completas e personalizadas para transformar sua IES em referência de sustentabilidade</p>
             </div>
             <div class="servicos-grid">
-                <div class="servico-card">
+                <div class="servico-card reveal">
                     <div class="servico-icon">🔍</div>
                     <h3>Diagnóstico Completo</h3>
-                    <p>Análise detalhada da situação atual da sua IES identificando oportunidades de conversão em créditos de carbono.</p>
+                    <p>Análise detalhada da situação atual da sua IES identificando oportunidades de geração e monetização de créditos de carbono.</p>
                     <ul>
-                        <li>Auditoria de recursos</li>
+                        <li>Auditoria de recursos e energia</li>
                         <li>Identificação de desperdícios</li>
-                        <li>Potencial de créditos</li>
-                        <li>Relatório executivo</li>
+                        <li>Potencial de créditos de carbono</li>
+                        <li>Relatório executivo personalizado</li>
                     </ul>
                 </div>
-                <div class="servico-card">
+                <div class="servico-card reveal">
                     <div class="servico-icon">🤝</div>
                     <h3>Conexões Estratégicas</h3>
-                    <p>Para IES de menor porte, conectamos sua instituição com parceiros estratégicos para viabilizar negociações.</p>
+                    <p>Para IES de menor porte, conectamos sua instituição com parceiros estratégicos para viabilizar negociações de créditos.</p>
                     <ul>
-                        <li>Network de IES</li>
-                        <li>Consórcios sustentáveis</li>
-                        <li>Métricas viáveis</li>
-                        <li>Suporte jurídico</li>
+                        <li>Network exclusivo de IES</li>
+                        <li>Formação de consórcios sustentáveis</li>
+                        <li>Métricas viáveis de negociação</li>
+                        <li>Suporte jurídico especializado</li>
                     </ul>
                 </div>
-                <div class="servico-card">
+                <div class="servico-card reveal">
                     <div class="servico-icon">💰</div>
                     <h3>Conversão Financeira</h3>
-                    <p>Transformamos créditos de carbono em provisões financeiras direcionadas para programas de retenção estudantil.</p>
+                    <p>Transformamos créditos de carbono em receita: estruturamos a emissão e a venda para gerar caixa novo para a instituição.</p>
                     <ul>
-                        <li>Gestão de créditos</li>
-                        <li>Maximização de recursos</li>
-                        <li>Programas de bolsas</li>
-                        <li>Fomento à pesquisa</li>
+                        <li>Gestão completa de créditos</li>
+                        <li>Maximização de recursos financeiros</li>
+                        <li>Programas de bolsas e auxílios</li>
+                        <li>Fomento à pesquisa acadêmica</li>
                     </ul>
                 </div>
             </div>
@@ -673,31 +1009,31 @@
     <!-- Metodologia -->
     <section id="metodologia" class="metodologia">
         <div class="section-container">
-            <div class="section-header">
-                <div class="section-tag">Como Funciona</div>
+            <div class="section-header reveal">
+                <div class="section-tag">COMO FUNCIONA</div>
                 <h2 class="section-title">Nossa Metodologia</h2>
-                <p class="section-description">Um processo estruturado em 4 etapas para garantir resultados</p>
+                <p class="section-description">Um processo estruturado e comprovado em 4 etapas para garantir resultados excepcionais</p>
             </div>
             <div class="metodologia-steps">
-                <div class="step">
+                <div class="step reveal">
                     <div class="step-number">1</div>
                     <h4>Diagnóstico</h4>
-                    <p>Análise completa da IES e identificação de oportunidades</p>
+                    <p>Análise completa da IES e identificação de todas as oportunidades de sustentabilidade</p>
                 </div>
-                <div class="step">
+                <div class="step reveal">
                     <div class="step-number">2</div>
                     <h4>Estratégia</h4>
-                    <p>Desenvolvimento de plano de ação personalizado</p>
+                    <p>Desenvolvimento de plano de ação personalizado e metas mensuráveis</p>
                 </div>
-                <div class="step">
+                <div class="step reveal">
                     <div class="step-number">3</div>
                     <h4>Execução</h4>
-                    <p>Implementação e conversão em créditos de carbono</p>
+                    <p>Implementação das melhorias e conversão em créditos de carbono certificados</p>
                 </div>
-                <div class="step">
+                <div class="step reveal">
                     <div class="step-number">4</div>
                     <h4>Resultados</h4>
-                    <p>Provisões financeiras e programas de retenção</p>
+                    <p>Receita adicional gerada a partir da comercialização dos créditos</p>
                 </div>
             </div>
         </div>
@@ -706,52 +1042,52 @@
     <!-- Benefícios -->
     <section id="beneficios" class="beneficios">
         <div class="section-container">
-            <div class="section-header">
-                <div class="section-tag" style="color: rgba(255,255,255,0.9)">Vantagens</div>
+            <div class="section-header reveal">
+                <div class="section-tag" style="color: rgba(255,255,255,0.9)">VANTAGENS</div>
                 <h2 class="section-title" style="color: white">Por Que Escolher a TYMA?</h2>
-                <p class="section-description" style="color: rgba(255,255,255,0.9)">Diferenciais que fazem a diferença para sua instituição</p>
+                <p class="section-description" style="color: rgba(255,255,255,0.9)">Diferenciais exclusivos que transformam a realidade da sua instituição de ensino</p>
             </div>
             <div class="beneficios-grid">
-                <div class="beneficio-item">
+                <div class="beneficio-item reveal">
                     <div class="beneficio-icon">📈</div>
                     <div class="beneficio-content">
-                        <h4>Aumento da Retenção</h4>
-                        <p>Recursos financeiros direcionados para manter alunos na instituição através de bolsas e auxílios</p>
+                        <h4>Diversificação de Receita</h4>
+                        <p>Criação de uma nova linha de receita via créditos de carbono, sem necessidade de investimento inicial elevado</p>
                     </div>
                 </div>
-                <div class="beneficio-item">
+                <div class="beneficio-item reveal">
                     <div class="beneficio-icon">🌱</div>
                     <div class="beneficio-content">
                         <h4>Sustentabilidade Real</h4>
-                        <p>Transforme sua IES em referência ambiental e social no ensino superior</p>
+                        <p>Transforme sua IES em referência ambiental e social no ensino superior, com impacto mensurável</p>
                     </div>
                 </div>
-                <div class="beneficio-item">
+                <div class="beneficio-item reveal">
                     <div class="beneficio-icon">💡</div>
                     <div class="beneficio-content">
                         <h4>Fomento à Pesquisa</h4>
-                        <p>Valorização dos estudantes através de recursos para projetos acadêmicos</p>
+                        <p>Valorização dos estudantes através de recursos dedicados para projetos acadêmicos e científicos</p>
                     </div>
                 </div>
-                <div class="beneficio-item">
+                <div class="beneficio-item reveal">
                     <div class="beneficio-icon">🔗</div>
                     <div class="beneficio-content">
                         <h4>Network Estratégico</h4>
-                        <p>Acesso a uma rede de IES comprometidas com sustentabilidade</p>
+                        <p>Acesso exclusivo a uma rede nacional de IES comprometidas com sustentabilidade e inovação</p>
                     </div>
                 </div>
-                <div class="beneficio-item">
+                <div class="beneficio-item reveal">
                     <div class="beneficio-icon">📊</div>
                     <div class="beneficio-content">
                         <h4>Plataforma Exclusiva</h4>
-                        <p>Sistema de análise e gestão disponível apenas para nossos clientes</p>
+                        <p>Sistema proprietário de análise e gestão disponível apenas para clientes TYMA</p>
                     </div>
                 </div>
-                <div class="beneficio-item">
+                <div class="beneficio-item reveal">
                     <div class="beneficio-icon">🎯</div>
                     <div class="beneficio-content">
                         <h4>Resultados Mensuráveis</h4>
-                        <p>KPIs claros e relatórios periódicos sobre impacto e retorno</p>
+                        <p>KPIs claros, dashboards em tempo real e relatórios periódicos sobre impacto financeiro e ambiental</p>
                     </div>
                 </div>
             </div>
@@ -761,10 +1097,13 @@
     <!-- CTA -->
     <section id="contato" class="cta-section">
         <div class="section-container">
-            <div class="cta-box">
+            <div class="cta-box reveal">
                 <h2>Pronto para Transformar sua IES?</h2>
-                <p>Solicite agora uma análise completa e descubra o potencial de sustentabilidade e retenção da sua instituição</p>
-                <button class="btn-primary" onclick="solicitarRelatorio()" style="font-size: 1.2rem; padding: 1.2rem 3rem;">📊 Solicite seu Relatório Gratuito</button>
+                <p>Solicite agora uma análise completa e descubra o potencial de geração de créditos de carbono e diversificação de receita da sua instituição. Nossa equipe de especialistas está pronta para atendê-lo.</p>
+                <button class="btn-primary" onclick="solicitarRelatorio()" style="font-size: 1.2rem; padding: 1.3rem 3.5rem;">
+                    <span>📊</span>
+                    <span>Solicite seu Relatório Gratuito</span>
+                </button>
             </div>
         </div>
     </section>
@@ -774,21 +1113,21 @@
         <div class="footer-content">
             <div class="footer-about">
                 <h3>TYMA</h3>
-                <p>Consultoria especializada em sustentabilidade e créditos de carbono para Instituições de Ensino Superior.</p>
+                <p>Consultoria especializada em sustentabilidade e créditos de carbono para Instituições de Ensino Superior. Transformando desperdícios em receita adicional.</p>
                 <div class="social-links">
-                    <a href="#">📘</a>
-                    <a href="#">🔗</a>
-                    <a href="#">📷</a>
-                    <a href="#">🐦</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="LinkedIn">🔗</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
                 </div>
             </div>
             <div class="footer-links">
                 <h4>Serviços</h4>
                 <ul>
-                    <li><a href="#servicos">Diagnóstico</a></li>
-                    <li><a href="#servicos">Conexões</a></li>
-                    <li><a href="#servicos">Conversão</a></li>
-                    <li><a href="#metodologia">Metodologia</a></li>
+                    <li><a href="#servicos">Diagnóstico Completo</a></li>
+                    <li><a href="#servicos">Conexões Estratégicas</a></li>
+                    <li><a href="#servicos">Conversão Financeira</a></li>
+                    <li><a href="#metodologia">Nossa Metodologia</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -796,7 +1135,7 @@
                 <ul>
                     <li><a href="#sobre">Sobre Nós</a></li>
                     <li><a href="#">Cases de Sucesso</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Blog & Notícias</a></li>
                     <li><a href="#">Trabalhe Conosco</a></li>
                 </ul>
             </div>
@@ -806,18 +1145,18 @@
                     <li><a href="mailto:contato@tyma.com.br">contato@tyma.com.br</a></li>
                     <li><a href="tel:+5511999999999">(11) 9999-9999</a></li>
                     <li><a href="#">São Paulo, SP</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Central de Ajuda</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 TYMA Consultoria. Todos os direitos reservados.</p>
+            <p>&copy; 2025 TYMA Consultoria. Todos os direitos reservados. | Política de Privacidade | Termos de Uso</p>
         </div>
     </footer>
 
     <script>
         function solicitarRelatorio() {
-            alert('🎉 Obrigado pelo interesse!\n\nNossa equipe entrará em contato em até 24h para agendar sua análise personalizada.\n\n📋 Para agilizar o processo, tenha em mãos:\n\n✓ Dados sobre consumo de recursos da IES\n✓ Informações sobre estrutura e porte\n✓ Desafios atuais de retenção\n✓ Objetivos de sustentabilidade\n\nAguardamos seu contato!');
+            alert('🎉 Obrigado pelo interesse na TYMA Consultoria!\n\nNossa equipe entrará em contato em até 24h para agendar sua análise personalizada.\n\n📋 Para agilizar o processo, tenha em mãos:\n\n✓ Dados sobre consumo de recursos da IES\n✓ Informações sobre estrutura e porte\n✓ Principais fontes de emissões e desperdícios\n✓ Objetivos de sustentabilidade e receita\n\nAguardamos ansiosamente para iniciar essa transformação!');
         }
 
         // Scroll suave
@@ -832,14 +1171,31 @@
         });
 
         // Header scroll effect
+        const header = document.getElementById('header');
         window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
             if (window.scrollY > 100) {
-                header.style.padding = '0.5rem 0';
+                header.classList.add('scrolled');
             } else {
-                header.style.padding = '1rem 0';
+                header.classList.remove('scrolled');
             }
         });
+
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function revealOnScroll() {
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
     </script>
 </body>
 </html>
