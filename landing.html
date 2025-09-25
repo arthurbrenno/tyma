@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYMA Consultoria | Sustentabilidade e Créditos de Carbono para IES</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f766e 0%, #059669 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-cta {
+            background: white;
+            color: #0f766e;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: #f0fdf4;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, rgba(15,118,110,0.95) 0%, rgba(5,150,105,0.95) 100%), 
+                        url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%230f766e"/><circle cx="50" cy="50" r="30" fill="%23059669" opacity="0.3"/></svg>');
+            padding: 180px 2rem 100px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0f766e;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: 2px solid white;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #0f766e;
+        }
+
+        /* Sobre */
+        .sobre {
+            padding: 100px 2rem;
+            background: white;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            color: #059669;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: #0f766e;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: #6b7280;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .sobre-content h3 {
+            font-size: 2rem;
+            color: #0f766e;
+            margin-bottom: 1.5rem;
+        }
+
+        .sobre-content p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .sobre-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: #f0fdf4;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #059669;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #059669;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* Serviços */
+        .servicos {
+            padding: 100px 2rem;
+            background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .servico-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 4px solid #059669;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(15,118,110,0.15);
+        }
+
+        .servico-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0f766e, #10b981);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .servico-card h3 {
+            font-size: 1.6rem;
+            color: #0f766e;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .servico-card p {
+            color: #6b7280;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .servico-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .servico-card li {
+            color: #4b5563;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .servico-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #059669;
+            font-weight: bold;
+        }
+
+        /* Metodologia */
+        .metodologia {
+            padding: 100px 2rem;
+            background: white;
+        }
+
+        .metodologia-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0f766e, #10b981);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step h4 {
+            font-size: 1.3rem;
+            color: #0f766e;
+            margin-bottom: 1rem;
+        }
+
+        .step p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Benefícios */
+        .beneficios {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, #0f766e 0%, #059669 100%);
+            color: white;
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .beneficio-item {
+            display: flex;
+            gap: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .beneficio-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: #0f766e;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .beneficio-content h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .beneficio-content p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 2rem;
+            background: #f0fdf4;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 4rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(15,118,110,0.15);
+        }
+
+        .cta-box h2 {
+            font-size: 2.5rem;
+            color: #0f766e;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-box p {
+            font-size: 1.3rem;
+            color: #6b7280;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #059669;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .sobre-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .servicos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metodologia-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .beneficios-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="logo.png" alt="TYMA Logo">
+                <span class="logo-text">TYMA</span>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#metodologia">Metodologia</a></li>
+                    <li><a href="#beneficios">Benefícios</a></li>
+                    <li><a href="#contato" class="nav-cta">Solicite seu Relatório</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transforme Sustentabilidade em Retenção de Alunos</h1>
+            <p class="hero-subtitle">Consultoria especializada em créditos de carbono para Instituições de Ensino Superior</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="solicitarRelatorio()">📊 Solicite seu Relatório</button>
+                <a href="#servicos" class="btn-secondary">Conheça Nossos Serviços</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="sobre">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Quem Somos</div>
+                <h2 class="section-title">Sobre a TYMA Consultoria</h2>
+                <p class="section-description">Pioneiros em conectar sustentabilidade, créditos de carbono e retenção estudantil no ensino superior brasileiro</p>
+            </div>
+            <div class="sobre-grid">
+                <div class="sobre-content">
+                    <h3>Nossa Missão</h3>
+                    <p>A TYMA é uma consultoria especializada em transformar o desperdício de recursos em Instituições de Ensino Superior em oportunidades financeiras através de créditos de carbono.</p>
+                    <p>Nosso foco é criar um ciclo virtuoso: identificamos desperdícios, convertemos em créditos de carbono, e direcionamos os recursos para programas de permanência estudantil, reduzindo a evasão e fomentando a pesquisa.</p>
+                </div>
+                <div class="sobre-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">+50</div>
+                        <div class="stat-label">IES Analisadas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">Melhoria na Retenção</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">R$ 2M</div>
+                        <div class="stat-label">Em Créditos Gerados</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Sustentável</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="servicos">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Soluções</div>
+                <h2 class="section-title">Nossos Serviços</h2>
+                <p class="section-description">Oferecemos soluções completas para transformar sua IES</p>
+            </div>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <div class="servico-icon">🔍</div>
+                    <h3>Diagnóstico Completo</h3>
+                    <p>Análise detalhada da situação atual da sua IES identificando oportunidades de conversão em créditos de carbono.</p>
+                    <ul>
+                        <li>Auditoria de recursos</li>
+                        <li>Identificação de desperdícios</li>
+                        <li>Potencial de créditos</li>
+                        <li>Relatório executivo</li>
+                    </ul>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">🤝</div>
+                    <h3>Conexões Estratégicas</h3>
+                    <p>Para IES de menor porte, conectamos sua instituição com parceiros estratégicos para viabilizar negociações.</p>
+                    <ul>
+                        <li>Network de IES</li>
+                        <li>Consórcios sustentáveis</li>
+                        <li>Métricas viáveis</li>
+                        <li>Suporte jurídico</li>
+                    </ul>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">💰</div>
+                    <h3>Conversão Financeira</h3>
+                    <p>Transformamos créditos de carbono em provisões financeiras direcionadas para programas de retenção estudantil.</p>
+                    <ul>
+                        <li>Gestão de créditos</li>
+                        <li>Maximização de recursos</li>
+                        <li>Programas de bolsas</li>
+                        <li>Fomento à pesquisa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodologia -->
+    <section id="metodologia" class="metodologia">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Como Funciona</div>
+                <h2 class="section-title">Nossa Metodologia</h2>
+                <p class="section-description">Um processo estruturado em 4 etapas para garantir resultados</p>
+            </div>
+            <div class="metodologia-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Diagnóstico</h4>
+                    <p>Análise completa da IES e identificação de oportunidades</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Estratégia</h4>
+                    <p>Desenvolvimento de plano de ação personalizado</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Execução</h4>
+                    <p>Implementação e conversão em créditos de carbono</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Resultados</h4>
+                    <p>Provisões financeiras e programas de retenção</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section id="beneficios" class="beneficios">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag" style="color: rgba(255,255,255,0.9)">Vantagens</div>
+                <h2 class="section-title" style="color: white">Por Que Escolher a TYMA?</h2>
+                <p class="section-description" style="color: rgba(255,255,255,0.9)">Diferenciais que fazem a diferença para sua instituição</p>
+            </div>
+            <div class="beneficios-grid">
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">📈</div>
+                    <div class="beneficio-content">
+                        <h4>Aumento da Retenção</h4>
+                        <p>Recursos financeiros direcionados para manter alunos na instituição através de bolsas e auxílios</p>
+                    </div>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">🌱</div>
+                    <div class="beneficio-content">
+                        <h4>Sustentabilidade Real</h4>
+                        <p>Transforme sua IES em referência ambiental e social no ensino superior</p>
+                    </div>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">💡</div>
+                    <div class="beneficio-content">
+                        <h4>Fomento à Pesquisa</h4>
+                        <p>Valorização dos estudantes através de recursos para projetos acadêmicos</p>
+                    </div>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">🔗</div>
+                    <div class="beneficio-content">
+                        <h4>Network Estratégico</h4>
+                        <p>Acesso a uma rede de IES comprometidas com sustentabilidade</p>
+                    </div>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">📊</div>
+                    <div class="beneficio-content">
+                        <h4>Plataforma Exclusiva</h4>
+                        <p>Sistema de análise e gestão disponível apenas para nossos clientes</p>
+                    </div>
+                </div>
+                <div class="beneficio-item">
+                    <div class="beneficio-icon">🎯</div>
+                    <div class="beneficio-content">
+                        <h4>Resultados Mensuráveis</h4>
+                        <p>KPIs claros e relatórios periódicos sobre impacto e retorno</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contato" class="cta-section">
+        <div class="section-container">
+            <div class="cta-box">
+                <h2>Pronto para Transformar sua IES?</h2>
+                <p>Solicite agora uma análise completa e descubra o potencial de sustentabilidade e retenção da sua instituição</p>
+                <button class="btn-primary" onclick="solicitarRelatorio()" style="font-size: 1.2rem; padding: 1.2rem 3rem;">📊 Solicite seu Relatório Gratuito</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>TYMA</h3>
+                <p>Consultoria especializada em sustentabilidade e créditos de carbono para Instituições de Ensino Superior.</p>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">🔗</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Serviços</h4>
+                <ul>
+                    <li><a href="#servicos">Diagnóstico</a></li>
+                    <li><a href="#servicos">Conexões</a></li>
+                    <li><a href="#servicos">Conversão</a></li>
+                    <li><a href="#metodologia">Metodologia</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#">Cases de Sucesso</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="mailto:contato@tyma.com.br">contato@tyma.com.br</a></li>
+                    <li><a href="tel:+5511999999999">(11) 9999-9999</a></li>
+                    <li><a href="#">São Paulo, SP</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TYMA Consultoria. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function solicitarRelatorio() {
+            alert('🎉 Obrigado pelo interesse!\n\nNossa equipe entrará em contato em até 24h para agendar sua análise personalizada.\n\n📋 Para agilizar o processo, tenha em mãos:\n\n✓ Dados sobre consumo de recursos da IES\n✓ Informações sobre estrutura e porte\n✓ Desafios atuais de retenção\n✓ Objetivos de sustentabilidade\n\nAguardamos seu contato!');
+        }
+
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.padding = '0.5rem 0';
+            } else {
+                header.style.padding = '1rem 0';
+            }
+        });
+    </script>
+</body>
+</html>
