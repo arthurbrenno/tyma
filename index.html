@@ -83,6 +83,13 @@
 		</style>
 	</head>
 	<body class="bg-base text-text antialiased font-sans">
+		<!-- Language Switcher -->
+		<div class="fixed top-3 right-3 z-50">
+			<div class="flex items-center gap-0 bg-white/10 backdrop-blur border border-white/20 rounded-full overflow-hidden text-[11px] shadow-sm">
+				<button id="lang-pt" type="button" class="px-3 py-1.5 text-text/80 hover:text-white hover:bg-white/10 focus:outline-none">PT</button>
+				<button id="lang-en" type="button" class="px-3 py-1.5 text-text/80 hover:text-white hover:bg-white/10 focus:outline-none">EN</button>
+			</div>
+		</div>
 		<!-- Fundo minimalista com ornamentos sutis (CO₂) -->
 		<div aria-hidden="true" class="pointer-events-none fixed inset-0 overflow-hidden">
 			<div class="absolute -left-6 top-20 text-sub/20 select-none text-xs sm:text-sm animate-floatY">CO₂</div>
@@ -97,18 +104,16 @@
 				<!-- Logo + marca (centralizados e maiores) -->
 				<div class="mb-8 text-center animate-fadeInUp">
 					<img src="logo.png" alt="Logo da consultoria" class="mx-auto h-16 w-16 sm:h-20 sm:w-20 object-contain brightness-110 drop-shadow-glow" />
-					<p class="mt-3 text-sub text-sm">Do carbono à nova receita</p>
+					<p id="brand-line" class="mt-3 text-sub text-sm">Do carbono à nova receita</p>
 				</div>
 
 				<!-- Hero copy -->
 						<header class="mb-8 animate-fadeInUp" style="animation-delay:120ms">
 					<h1 class="font-display text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl">
-						<span class="block">Transforme Carbono</span>
-						<span class="block text-text/90">em Nova Receita</span>
+						<span id="hero-line1" class="block">Transforme Carbono</span>
+						<span id="hero-line2" class="block text-text/90">em Nova Receita</span>
 					</h1>
-					<p class="text-sub mt-4 text-base sm:text-lg max-w-prose">
-						Sua IES pode gerar créditos de carbono e abrir uma nova fonte de receita em tempo recorde.
-					</p>
+					<p id="hero-desc" class="text-sub mt-4 text-base sm:text-lg max-w-prose">Sua IES pode gerar créditos de carbono e abrir uma nova fonte de receita em tempo recorde.</p>
 				</header>
 
 								<!-- Formulário (GitHub Pages + FormSubmit) -->
@@ -118,19 +123,19 @@
 
 									<!-- Tipo de projeto -->
 									<div>
-										<label for="project-type" class="block text-sm text-sub/90 mb-2">Qual o tipo de projeto? <span class="text-danger">*</span></label>
+										<label id="label-project-type" for="project-type" class="block text-sm text-sub/90 mb-2">Qual o tipo de projeto? <span class="text-danger">*</span></label>
 										<div class="relative">
 											<select id="project-type" name="tipoProjeto" required aria-describedby="type-error"
 												class="w-full h-14 rounded-2xl bg-white/5 text-text px-5 pr-12 outline-none border border-white/10 focus:border-brand/50 focus:ring-4 focus:ring-brand/20 transition-all">
-												<option value="" selected disabled hidden>Selecione uma opção</option>
-												<option>Floresta</option>
-												<option>Plantação</option>
-												<option>Reserva</option>
-												<option>Energia Eólica</option>
-												<option>Solar</option>
-												<option>Biomassa Renovável</option>
-												<option>Metano Evitado</option>
-												<option>Outros</option>
+												<option id="opt-default" value="" selected disabled hidden>Selecione uma opção</option>
+												<option id="opt-forest">Floresta</option>
+												<option id="opt-plantation">Plantação</option>
+												<option id="opt-reserve">Reserva</option>
+												<option id="opt-wind">Energia Eólica</option>
+												<option id="opt-solar">Solar</option>
+												<option id="opt-biomass">Biomassa Renovável</option>
+												<option id="opt-methane">Metano Evitado</option>
+												<option id="opt-other">Outros</option>
 											</select>
 											<!-- caret -->
 											<div class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sub/70" aria-hidden="true">
@@ -140,9 +145,9 @@
 										<p id="type-error" class="mt-2 text-sm text-danger hidden">Selecione o tipo de projeto.</p>
 									</div>
 					<div class="relative group">
-						<label for="email" class="sr-only">Email institucional</label>
+										<label id="label-email" for="email" class="sr-only">Email institucional</label>
 												<input id="email" name="email" type="email" inputmode="email" autocomplete="email"
-							placeholder="Seu melhor email institucional"
+										placeholder="Seu melhor email institucional"
 										class="w-full h-14 rounded-2xl bg-white/5 text-text placeholder:text-sub/60 px-5 pr-12 outline-none border border-white/10 focus:border-brand/50 focus:ring-4 focus:ring-brand/20 transition-all transform-gpu focus:scale-[1.01]"
 							aria-describedby="email-help email-error"
 							required />
@@ -170,11 +175,11 @@
 						</span>
 					</button>
 
-					<p class="text-xs text-sub/70">Privacidade: usaremos seu email somente para contato sobre este projeto.</p>
+					<p id="privacy-note" class="text-xs text-sub/70">Privacidade: usaremos seu email somente para contato sobre este projeto.</p>
 					<!-- LGPD: como tratamos seus dados -->
 					<details class="mt-2 text-xs text-sub/70">
-						<summary class="cursor-pointer text-sub/80 hover:text-sub/60">Como tratamos seus dados (LGPD)</summary>
-						<div class="mt-2 space-y-1">
+						<summary id="lgpd-summary" class="cursor-pointer text-sub/80 hover:text-sub/60">Como tratamos seus dados (LGPD)</summary>
+						<div id="lgpd-content" class="mt-2 space-y-1">
 							<p><span class="font-semibold text-text/90">Quais dados:</span> email e tipo de projeto informados por você; metadados técnicos mínimos (userAgent e referrer) enviados automaticamente pelo navegador.</p>
 							<p><span class="font-semibold text-text/90">Finalidade:</span> entrar em contato sobre a consultoria, enviar informações do diagnóstico e dar andamento ao seu interesse.</p>
 							<p><span class="font-semibold text-text/90">Base legal:</span> consentimento (art. 7º, I, LGPD). Você pode revogar a qualquer momento.</p>
@@ -188,28 +193,24 @@
 
 				<!-- Sucesso -->
 			<div id="success" class="hidden mt-10 animate-fadeInUp" aria-live="polite">
-					<p class="text-brand font-semibold mb-2">✓ Email capturado!</p>
-					<h2 class="font-display text-2xl font-bold">Obrigado pelo interesse!</h2>
-					<p class="text-sub mt-2">Nossa equipe entrará em contato em até 48h para:</p>
+					<p id="success-badge" class="text-brand font-semibold mb-2">✓ Email capturado!</p>
+					<h2 id="success-title" class="font-display text-2xl font-bold">Obrigado pelo interesse!</h2>
+					<p id="success-desc" class="text-sub mt-2">Nossa equipe entrará em contato em até 48h para:</p>
 					<ul class="text-sub mt-3 space-y-1 list-disc list-inside">
-						<li>Calcular o potencial de créditos da sua IES</li>
-						<li>Apresentar projeção de receita adicional</li>
-						<li>Agendar diagnóstico gratuito</li>
+						<li id="success-li1">Calcular o potencial de créditos da sua IES</li>
+						<li id="success-li2">Apresentar projeção de receita adicional</li>
+						<li id="success-li3">Agendar diagnóstico gratuito</li>
 					</ul>
 					<div class="mt-6 flex items-center gap-3">
-						<a id="share-linkedin" href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-xl h-11 px-4 bg-white/10 hover:bg-white/15 text-text text-sm font-semibold transition">
-							Compartilhar no LinkedIn
-						</a>
-						<button id="send-another" class="inline-flex items-center justify-center rounded-xl h-11 px-4 text-sm font-semibold text-text/80 hover:text-text transition">
-							Enviar outro email
-						</button>
+						<a id="share-linkedin" href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-xl h-11 px-4 bg-white/10 hover:bg-white/15 text-text text-sm font-semibold transition">Compartilhar no LinkedIn</a>
+						<button id="send-another" class="inline-flex items-center justify-center rounded-xl h-11 px-4 text-sm font-semibold text-text/80 hover:text-text transition">Enviar outro email</button>
 					</div>
 				</div>
 
 				<!-- Rodapé mínimo em desktop -->
 				<footer class="mt-10 text-[13px] text-sub/60">
 					<span class="hidden sm:inline">© <span id="year"></span> TYMA Consultoria — </span>
-					<span>Do carbono à nova receita, com simplicidade.</span>
+					<span id="footer-phrase">Do carbono à nova receita, com simplicidade.</span>
 					<a href="landing.html" class="ml-2 underline decoration-dotted underline-offset-2 hover:text-text transition" title="Ir para landing.html">Landing</a>
 				</footer>
 			</section>
@@ -285,12 +286,12 @@
 			function setLoading(loading) {
 				submitBtn.disabled = loading;
 				if (loading) {
-					btnLabel.textContent = 'Enviando…';
+					btnLabel.textContent = getText('btn.loading');
 					btnSpinner.classList.remove('hidden');
 					btnCheck.classList.add('hidden');
 				} else {
 					btnSpinner.classList.add('hidden');
-					btnLabel.textContent = 'Quero Transformar Minha IES';
+					btnLabel.textContent = getText('btn.primary');
 				}
 			}
 
@@ -376,9 +377,190 @@
 					setSuccess();
 				} else {
 					setLoading(false);
-					setFieldState({ valid: false, message: 'Ops! Algo deu errado. Tente novamente.' });
+						setFieldState({ valid: false, message: getText('errors.generic') });
 				}
 			});
+
+				// --- i18n ---
+				const I18N = {
+					pt: {
+						title: 'Transforme Carbono em Nova Receita — Captura de Leads IES',
+						brand: 'Do carbono à nova receita',
+						hero: { line1: 'Transforme Carbono', line2: 'em Nova Receita', desc: 'Sua IES pode gerar créditos de carbono e abrir uma nova fonte de receita em tempo recorde.' },
+						labels: {
+							projectType: 'Qual o tipo de projeto? <span class="text-danger">*</span>',
+							email: 'Email institucional'
+						},
+						options: {
+							default: 'Selecione uma opção',
+							forest: 'Floresta',
+							plantation: 'Plantação',
+							reserve: 'Reserva',
+							wind: 'Energia Eólica',
+							solar: 'Solar',
+							biomass: 'Biomassa Renovável',
+							methane: 'Metano Evitado',
+							other: 'Outros'
+						},
+						placeholders: { email: 'Seu melhor email institucional' },
+						help: '✓ Sem investimento inicial • ✓ Resultado em 60 dias',
+						btn: { primary: 'Quero Gerar Nova Receita', loading: 'Enviando…' },
+						privacyNote: 'Privacidade: usaremos seu email somente para contato sobre este projeto.',
+						lgpdSummary: 'Como tratamos seus dados (LGPD)',
+						lgpdHTML: `
+							<p><span class="font-semibold text-text/90">Quais dados:</span> email e tipo de projeto informados por você; metadados técnicos mínimos (userAgent e referrer) enviados automaticamente pelo navegador.</p>
+							<p><span class="font-semibold text-text/90">Finalidade:</span> entrar em contato sobre a consultoria, enviar informações do diagnóstico e dar andamento ao seu interesse.</p>
+							<p><span class="font-semibold text-text/90">Base legal:</span> consentimento (art. 7º, I, LGPD). Você pode revogar a qualquer momento.</p>
+							<p><span class="font-semibold text-text/90">Armazenamento e processamento:</span> o formulário é enviado via FormSubmit e entregue por email à nossa equipe. Provedores de email/infraestrutura podem processar os dados fora do Brasil.</p>
+							<p><span class="font-semibold text-text/90">Compartilhamento:</span> não vendemos seus dados. Compartilhamos apenas com provedores estritamente necessários para entrega e gerenciamento dos contatos.</p>
+							<p><span class="font-semibold text-text/90">Armazenamento e exclusão:</span> mantemos os dados pelo tempo necessário para o contato e gestão do interesse. Você pode solicitar exclusão a qualquer momento respondendo o email recebido.</p>
+							<p><span class="font-semibold text-text/90">Seus direitos:</span> acesso, correção, portabilidade, eliminação e revogação do consentimento. Para exercer, responda o email de confirmação solicitando a ação desejada.</p>
+						`,
+						success: {
+							badge: '✓ Email capturado!',
+							title: 'Obrigado pelo interesse!',
+							desc: 'Nossa equipe entrará em contato em até 48h para:',
+							li1: 'Calcular o potencial de créditos da sua IES',
+							li2: 'Apresentar projeção de receita adicional',
+							li3: 'Agendar diagnóstico gratuito',
+							share: 'Compartilhar no LinkedIn',
+							sendAnother: 'Enviar outro email'
+						},
+						footer: 'Do carbono à nova receita, com simplicidade.',
+						errors: { generic: 'Ops! Algo deu errado. Tente novamente.', emailInvalid: 'Por favor, insira um email institucional válido.', typeRequired: 'Selecione o tipo de projeto.' }
+					},
+					en: {
+						title: 'Turn Carbon into New Revenue — IES Lead Capture',
+						brand: 'From carbon to new revenue',
+						hero: { line1: 'Turn Carbon', line2: 'into New Revenue', desc: 'Your HEI can generate carbon credits and unlock a new revenue stream in record time.' },
+						labels: {
+							projectType: 'What type of project? <span class="text-danger">*</span>',
+							email: 'Institutional email'
+						},
+						options: {
+							default: 'Select an option',
+							forest: 'Forest',
+							plantation: 'Plantation',
+							reserve: 'Reserve',
+							wind: 'Wind Energy',
+							solar: 'Solar',
+							biomass: 'Renewable Biomass',
+							methane: 'Avoided Methane',
+							other: 'Other'
+						},
+						placeholders: { email: 'Your best institutional email' },
+						help: '✓ No upfront investment • ✓ Results within 60 days',
+						btn: { primary: 'I Want to Generate New Revenue', loading: 'Sending…' },
+						privacyNote: 'Privacy: we will use your email only to contact you about this project.',
+						lgpdSummary: 'How we process your data (LGPD)',
+						lgpdHTML: `
+							<p><span class="font-semibold text-text/90">What data:</span> your email and selected project type; minimal technical metadata (userAgent and referrer) automatically sent by your browser.</p>
+							<p><span class="font-semibold text-text/90">Purpose:</span> to contact you about the consultancy, send diagnostic information, and follow up on your request.</p>
+							<p><span class="font-semibold text-text/90">Legal basis:</span> consent (LGPD art. 7, I). You can revoke it at any time.</p>
+							<p><span class="font-semibold text-text/90">Storage and processing:</span> the form is sent via FormSubmit and delivered to our team by email. Email/infrastructure providers may process data outside Brazil.</p>
+							<p><span class="font-semibold text-text/90">Sharing:</span> we do not sell your data. We only share with providers strictly necessary to deliver and manage contacts.</p>
+							<p><span class="font-semibold text-text/90">Retention and deletion:</span> we keep data as long as needed for contact and interest management. You may request deletion at any time by replying to the received email.</p>
+							<p><span class="font-semibold text-text/90">Your rights:</span> access, correction, portability, deletion, and consent revocation. To exercise them, reply to the confirmation email requesting the desired action.</p>
+						`,
+						success: {
+							badge: '✓ Email captured!',
+							title: 'Thanks for your interest!',
+							desc: 'Our team will contact you within 48h to:',
+							li1: 'Estimate your institution’s carbon credit potential',
+							li2: 'Show a projection of additional revenue',
+							li3: 'Schedule a free assessment',
+							share: 'Share on LinkedIn',
+							sendAnother: 'Send another email'
+						},
+						footer: 'From carbon to new revenue, made simple.',
+						errors: { generic: 'Oops! Something went wrong. Please try again.', emailInvalid: 'Please enter a valid institutional email.', typeRequired: 'Please select a project type.' }
+					}
+				};
+
+				function getLang() {
+					return localStorage.getItem('lang') || 'pt';
+				}
+
+				function setLang(lang) {
+					localStorage.setItem('lang', lang);
+					applyTranslations();
+				}
+
+				function getText(path) {
+					const lang = getLang();
+					return path.split('.').reduce((acc, key) => (acc && acc[key] != null ? acc[key] : null), I18N[lang]);
+				}
+
+				function applyTranslations() {
+					const lang = getLang();
+					const t = I18N[lang];
+					// title
+					document.title = t.title;
+					// header/hero
+					const brandLine = document.getElementById('brand-line'); if (brandLine) brandLine.textContent = t.brand;
+					const hl1 = document.getElementById('hero-line1'); if (hl1) hl1.textContent = t.hero.line1;
+					const hl2 = document.getElementById('hero-line2'); if (hl2) hl2.textContent = t.hero.line2;
+					const hdesc = document.getElementById('hero-desc'); if (hdesc) hdesc.textContent = t.hero.desc;
+					// labels
+					const lpt = document.getElementById('label-project-type'); if (lpt) lpt.innerHTML = t.labels.projectType;
+					const le = document.getElementById('label-email'); if (le) le.textContent = t.labels.email;
+					// options
+					const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+					setTxt('opt-default', t.options.default);
+					setTxt('opt-forest', t.options.forest);
+					setTxt('opt-plantation', t.options.plantation);
+					setTxt('opt-reserve', t.options.reserve);
+					setTxt('opt-wind', t.options.wind);
+					setTxt('opt-solar', t.options.solar);
+					setTxt('opt-biomass', t.options.biomass);
+					setTxt('opt-methane', t.options.methane);
+					setTxt('opt-other', t.options.other);
+					// placeholders/help
+					if (emailInput) emailInput.setAttribute('placeholder', t.placeholders.email);
+					const help = document.getElementById('email-help'); if (help) help.textContent = t.help;
+					// privacy
+					const pn = document.getElementById('privacy-note'); if (pn) pn.textContent = t.privacyNote;
+					const lsum = document.getElementById('lgpd-summary'); if (lsum) lsum.textContent = t.lgpdSummary;
+					const lcontent = document.getElementById('lgpd-content'); if (lcontent) lcontent.innerHTML = t.lgpdHTML;
+					// button
+					btnLabel.textContent = t.btn.primary;
+					// errors
+					typeError.textContent = t.errors.typeRequired;
+					emailError.textContent = t.errors.emailInvalid;
+					// success
+					setTxt('success-badge', t.success.badge);
+					setTxt('success-title', t.success.title);
+					setTxt('success-desc', t.success.desc);
+					setTxt('success-li1', t.success.li1);
+					setTxt('success-li2', t.success.li2);
+					setTxt('success-li3', t.success.li3);
+					const shareBtn = document.getElementById('share-linkedin'); if (shareBtn) shareBtn.textContent = t.success.share;
+					const sendAnotherBtn = document.getElementById('send-another'); if (sendAnotherBtn) sendAnotherBtn.textContent = t.success.sendAnother;
+					// footer
+					const fp = document.getElementById('footer-phrase'); if (fp) fp.textContent = t.footer;
+					// toggle UI state
+					const ptBtn = document.getElementById('lang-pt');
+					const enBtn = document.getElementById('lang-en');
+					if (ptBtn && enBtn) {
+						if (lang === 'pt') {
+							ptBtn.classList.add('bg-white/10','text-white');
+							enBtn.classList.remove('bg-white/10','text-white');
+						} else {
+							enBtn.classList.add('bg-white/10','text-white');
+							ptBtn.classList.remove('bg-white/10','text-white');
+						}
+					}
+				}
+
+				// expose for validations
+				function getTextWrapper(key) { return getText(key); }
+
+				// init
+				applyTranslations();
+				const ptBtn = document.getElementById('lang-pt');
+				const enBtn = document.getElementById('lang-en');
+				if (ptBtn) ptBtn.addEventListener('click', () => setLang('pt'));
+				if (enBtn) enBtn.addEventListener('click', () => setLang('en'));
 		</script>
 	</body>
 </html>

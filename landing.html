@@ -18,6 +18,9 @@
             overflow-x: hidden;
         }
 
+        /* Utility */
+        .fixed { position: fixed; }
+
         /* Header */
         .header {
             background: rgba(15, 118, 110, 0.98);
@@ -886,6 +889,13 @@
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="fixed" style="top:12px; right:12px; z-index:2000;">
+        <div style="display:flex; gap:0; background:rgba(15,118,110,0.2); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.25); border-radius:999px; overflow:hidden; font-size:11px;">
+            <button id="lang-pt" type="button" style="padding:6px 10px; color:rgba(255,255,255,0.9);">PT</button>
+            <button id="lang-en" type="button" style="padding:6px 10px; color:rgba(255,255,255,0.9);">EN</button>
+        </div>
+    </div>
     <!-- Header -->
     <header class="header" id="header">
         <div class="header-content">
@@ -895,11 +905,11 @@
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#metodologia">Metodologia</a></li>
-                    <li><a href="#beneficios">Benefícios</a></li>
-                    <li><a href="#contato" class="nav-cta">Solicite seu Relatório</a></li>
+                    <li><a id="nav-sobre" href="#sobre">Sobre</a></li>
+                    <li><a id="nav-servicos" href="#servicos">Serviços</a></li>
+                    <li><a id="nav-metodologia" href="#metodologia">Metodologia</a></li>
+                    <li><a id="nav-beneficios" href="#beneficios">Benefícios</a></li>
+                    <li><a id="nav-cta" href="#contato" class="nav-cta">Solicite seu Relatório</a></li>
                 </ul>
             </nav>
         </div>
@@ -908,17 +918,17 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">🌱 INOVAÇÃO EM SUSTENTABILIDADE</div>
-            <h1>Transforme Sustentabilidade em Nova Receita</h1>
-            <p class="hero-subtitle">Consultoria especializada em créditos de carbono para Instituições de Ensino Superior. Convertemos desperdícios em receita recorrente com ativos de carbono que sua IES ainda não aproveita.</p>
+            <div id="hero-badge" class="hero-badge">🌱 INOVAÇÃO EM SUSTENTABILIDADE</div>
+            <h1 id="hero-title">Transforme Sustentabilidade em Nova Receita</h1>
+            <p id="hero-subtitle" class="hero-subtitle">Consultoria especializada em créditos de carbono para Instituições de Ensino Superior. Convertemos desperdícios em receita recorrente com ativos de carbono que sua IES ainda não aproveita.</p>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="solicitarRelatorio()">
                     <span>📊</span>
-                    <span>Solicite seu Relatório</span>
+                    <span id="hero-btn1">Solicite seu Relatório</span>
                 </button>
                 <a href="#servicos" class="btn-secondary">
                     <span>🔍</span>
-                    <span>Conheça Nossos Serviços</span>
+                    <span id="hero-btn2">Conheça Nossos Serviços</span>
                 </a>
             </div>
         </div>
@@ -928,32 +938,32 @@
     <section id="sobre" class="sobre">
         <div class="section-container">
             <div class="section-header reveal">
-                <div class="section-tag">QUEM SOMOS</div>
-                <h2 class="section-title">Sobre a TYMA Consultoria</h2>
-                <p class="section-description">Pioneiros em conectar sustentabilidade e créditos de carbono à diversificação de receita no ensino superior brasileiro</p>
+                <div id="sobre-tag" class="section-tag">QUEM SOMOS</div>
+                <h2 id="sobre-title" class="section-title">Sobre a TYMA Consultoria</h2>
+                <p id="sobre-desc" class="section-description">Pioneiros em conectar sustentabilidade e créditos de carbono à diversificação de receita no ensino superior brasileiro</p>
             </div>
             <div class="sobre-grid">
                 <div class="sobre-content reveal">
-                    <h3>Nossa Missão</h3>
-                    <p>A TYMA é uma consultoria especializada em transformar desperdícios de recursos em Instituições de Ensino Superior em oportunidades financeiras por meio de créditos de carbono.</p>
-                    <p>Nosso foco é simples: identificamos oportunidades, estruturamos projetos elegíveis e convertimos em créditos de carbono certificados, abrindo uma nova linha de receita para sua IES.</p>
+                    <h3 id="sobre-card-title">Nossa Missão</h3>
+                    <p id="sobre-p1">A TYMA é uma consultoria especializada em transformar desperdícios de recursos em Instituições de Ensino Superior em oportunidades financeiras por meio de créditos de carbono.</p>
+                    <p id="sobre-p2">Nosso foco é simples: identificamos oportunidades, estruturamos projetos elegíveis e convertimos em créditos de carbono certificados, abrindo uma nova linha de receita para sua IES.</p>
                 </div>
                 <div class="sobre-stats">
                     <div class="stat-box reveal">
-                        <div class="stat-number">+50</div>
-                        <div class="stat-label">IES Analisadas</div>
+                        <div class="stat-number" id="stat1-number">+50</div>
+                        <div class="stat-label" id="stat1-label">IES Analisadas</div>
                     </div>
                     <div class="stat-box reveal">
-                        <div class="stat-number">30%</div>
-                        <div class="stat-label">Nova fonte de receita</div>
+                        <div class="stat-number" id="stat2-number">30%</div>
+                        <div class="stat-label" id="stat2-label">Nova fonte de receita</div>
                     </div>
                     <div class="stat-box reveal">
-                        <div class="stat-number">R$ 2M</div>
-                        <div class="stat-label">Em Créditos Gerados</div>
+                        <div class="stat-number" id="stat3-number">R$ 2M</div>
+                        <div class="stat-label" id="stat3-label">Em Créditos Gerados</div>
                     </div>
                     <div class="stat-box reveal">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Sustentável</div>
+                        <div class="stat-number" id="stat4-number">100%</div>
+                        <div class="stat-label" id="stat4-label">Sustentável</div>
                     </div>
                 </div>
             </div>
@@ -964,42 +974,42 @@
     <section id="servicos" class="servicos">
         <div class="section-container">
             <div class="section-header reveal">
-                <div class="section-tag">SOLUÇÕES</div>
-                <h2 class="section-title">Nossos Serviços</h2>
-                <p class="section-description">Oferecemos soluções completas e personalizadas para transformar sua IES em referência de sustentabilidade</p>
+                <div id="servicos-tag" class="section-tag">SOLUÇÕES</div>
+                <h2 id="servicos-title" class="section-title">Nossos Serviços</h2>
+                <p id="servicos-desc" class="section-description">Oferecemos soluções completas e personalizadas para transformar sua IES em referência de sustentabilidade</p>
             </div>
             <div class="servicos-grid">
                 <div class="servico-card reveal">
                     <div class="servico-icon">🔍</div>
-                    <h3>Diagnóstico Completo</h3>
-                    <p>Análise detalhada da situação atual da sua IES identificando oportunidades de geração e monetização de créditos de carbono.</p>
+                    <h3 id="svc1-title">Diagnóstico Completo</h3>
+                    <p id="svc1-desc">Análise detalhada da situação atual da sua IES identificando oportunidades de geração e monetização de créditos de carbono.</p>
                     <ul>
-                        <li>Auditoria de recursos e energia</li>
-                        <li>Identificação de desperdícios</li>
-                        <li>Potencial de créditos de carbono</li>
-                        <li>Relatório executivo personalizado</li>
+                        <li id="svc1-li1">Auditoria de recursos e energia</li>
+                        <li id="svc1-li2">Identificação de desperdícios</li>
+                        <li id="svc1-li3">Potencial de créditos de carbono</li>
+                        <li id="svc1-li4">Relatório executivo personalizado</li>
                     </ul>
                 </div>
                 <div class="servico-card reveal">
                     <div class="servico-icon">🤝</div>
-                    <h3>Conexões Estratégicas</h3>
-                    <p>Para IES de menor porte, conectamos sua instituição com parceiros estratégicos para viabilizar negociações de créditos.</p>
+                    <h3 id="svc2-title">Conexões Estratégicas</h3>
+                    <p id="svc2-desc">Para IES de menor porte, conectamos sua instituição com parceiros estratégicos para viabilizar negociações de créditos.</p>
                     <ul>
-                        <li>Network exclusivo de IES</li>
-                        <li>Formação de consórcios sustentáveis</li>
-                        <li>Métricas viáveis de negociação</li>
-                        <li>Suporte jurídico especializado</li>
+                        <li id="svc2-li1">Network exclusivo de IES</li>
+                        <li id="svc2-li2">Formação de consórcios sustentáveis</li>
+                        <li id="svc2-li3">Métricas viáveis de negociação</li>
+                        <li id="svc2-li4">Suporte jurídico especializado</li>
                     </ul>
                 </div>
                 <div class="servico-card reveal">
                     <div class="servico-icon">💰</div>
-                    <h3>Conversão Financeira</h3>
-                    <p>Transformamos créditos de carbono em receita: estruturamos a emissão e a venda para gerar caixa novo para a instituição.</p>
+                    <h3 id="svc3-title">Conversão Financeira</h3>
+                    <p id="svc3-desc">Transformamos créditos de carbono em receita: estruturamos a emissão e a venda para gerar caixa novo para a instituição.</p>
                     <ul>
-                        <li>Gestão completa de créditos</li>
-                        <li>Maximização de recursos financeiros</li>
-                        <li>Programas de bolsas e auxílios</li>
-                        <li>Fomento à pesquisa acadêmica</li>
+                        <li id="svc3-li1">Gestão completa de créditos</li>
+                        <li id="svc3-li2">Maximização de recursos financeiros</li>
+                        <li id="svc3-li3">Programas de bolsas e auxílios</li>
+                        <li id="svc3-li4">Fomento à pesquisa acadêmica</li>
                     </ul>
                 </div>
             </div>
@@ -1010,30 +1020,30 @@
     <section id="metodologia" class="metodologia">
         <div class="section-container">
             <div class="section-header reveal">
-                <div class="section-tag">COMO FUNCIONA</div>
-                <h2 class="section-title">Nossa Metodologia</h2>
-                <p class="section-description">Um processo estruturado e comprovado em 4 etapas para garantir resultados excepcionais</p>
+                <div id="metod-tag" class="section-tag">COMO FUNCIONA</div>
+                <h2 id="metod-title" class="section-title">Nossa Metodologia</h2>
+                <p id="metod-desc" class="section-description">Um processo estruturado e comprovado em 4 etapas para garantir resultados excepcionais</p>
             </div>
             <div class="metodologia-steps">
                 <div class="step reveal">
                     <div class="step-number">1</div>
-                    <h4>Diagnóstico</h4>
-                    <p>Análise completa da IES e identificação de todas as oportunidades de sustentabilidade</p>
+                    <h4 id="step1-title">Diagnóstico</h4>
+                    <p id="step1-desc">Análise completa da IES e identificação de todas as oportunidades de sustentabilidade</p>
                 </div>
                 <div class="step reveal">
                     <div class="step-number">2</div>
-                    <h4>Estratégia</h4>
-                    <p>Desenvolvimento de plano de ação personalizado e metas mensuráveis</p>
+                    <h4 id="step2-title">Estratégia</h4>
+                    <p id="step2-desc">Desenvolvimento de plano de ação personalizado e metas mensuráveis</p>
                 </div>
                 <div class="step reveal">
                     <div class="step-number">3</div>
-                    <h4>Execução</h4>
-                    <p>Implementação das melhorias e conversão em créditos de carbono certificados</p>
+                    <h4 id="step3-title">Execução</h4>
+                    <p id="step3-desc">Implementação das melhorias e conversão em créditos de carbono certificados</p>
                 </div>
                 <div class="step reveal">
                     <div class="step-number">4</div>
-                    <h4>Resultados</h4>
-                    <p>Receita adicional gerada a partir da comercialização dos créditos</p>
+                    <h4 id="step4-title">Resultados</h4>
+                    <p id="step4-desc">Receita adicional gerada a partir da comercialização dos créditos</p>
                 </div>
             </div>
         </div>
@@ -1043,51 +1053,51 @@
     <section id="beneficios" class="beneficios">
         <div class="section-container">
             <div class="section-header reveal">
-                <div class="section-tag" style="color: rgba(255,255,255,0.9)">VANTAGENS</div>
-                <h2 class="section-title" style="color: white">Por Que Escolher a TYMA?</h2>
-                <p class="section-description" style="color: rgba(255,255,255,0.9)">Diferenciais exclusivos que transformam a realidade da sua instituição de ensino</p>
+                <div id="benef-tag" class="section-tag" style="color: rgba(255,255,255,0.9)">VANTAGENS</div>
+                <h2 id="benef-title" class="section-title" style="color: white">Por Que Escolher a TYMA?</h2>
+                <p id="benef-desc" class="section-description" style="color: rgba(255,255,255,0.9)">Diferenciais exclusivos que transformam a realidade da sua instituição de ensino</p>
             </div>
             <div class="beneficios-grid">
                 <div class="beneficio-item reveal">
                     <div class="beneficio-icon">📈</div>
                     <div class="beneficio-content">
-                        <h4>Diversificação de Receita</h4>
-                        <p>Criação de uma nova linha de receita via créditos de carbono, sem necessidade de investimento inicial elevado</p>
+                        <h4 id="benef1-title">Diversificação de Receita</h4>
+                        <p id="benef1-desc">Criação de uma nova linha de receita via créditos de carbono, sem necessidade de investimento inicial elevado</p>
                     </div>
                 </div>
                 <div class="beneficio-item reveal">
                     <div class="beneficio-icon">🌱</div>
                     <div class="beneficio-content">
-                        <h4>Sustentabilidade Real</h4>
-                        <p>Transforme sua IES em referência ambiental e social no ensino superior, com impacto mensurável</p>
+                        <h4 id="benef2-title">Sustentabilidade Real</h4>
+                        <p id="benef2-desc">Transforme sua IES em referência ambiental e social no ensino superior, com impacto mensurável</p>
                     </div>
                 </div>
                 <div class="beneficio-item reveal">
                     <div class="beneficio-icon">💡</div>
                     <div class="beneficio-content">
-                        <h4>Fomento à Pesquisa</h4>
-                        <p>Valorização dos estudantes através de recursos dedicados para projetos acadêmicos e científicos</p>
+                        <h4 id="benef3-title">Fomento à Pesquisa</h4>
+                        <p id="benef3-desc">Valorização dos estudantes através de recursos dedicados para projetos acadêmicos e científicos</p>
                     </div>
                 </div>
                 <div class="beneficio-item reveal">
                     <div class="beneficio-icon">🔗</div>
                     <div class="beneficio-content">
-                        <h4>Network Estratégico</h4>
-                        <p>Acesso exclusivo a uma rede nacional de IES comprometidas com sustentabilidade e inovação</p>
+                        <h4 id="benef4-title">Network Estratégico</h4>
+                        <p id="benef4-desc">Acesso exclusivo a uma rede nacional de IES comprometidas com sustentabilidade e inovação</p>
                     </div>
                 </div>
                 <div class="beneficio-item reveal">
                     <div class="beneficio-icon">📊</div>
                     <div class="beneficio-content">
-                        <h4>Plataforma Exclusiva</h4>
-                        <p>Sistema proprietário de análise e gestão disponível apenas para clientes TYMA</p>
+                        <h4 id="benef5-title">Plataforma Exclusiva</h4>
+                        <p id="benef5-desc">Sistema proprietário de análise e gestão disponível apenas para clientes TYMA</p>
                     </div>
                 </div>
                 <div class="beneficio-item reveal">
                     <div class="beneficio-icon">🎯</div>
                     <div class="beneficio-content">
-                        <h4>Resultados Mensuráveis</h4>
-                        <p>KPIs claros, dashboards em tempo real e relatórios periódicos sobre impacto financeiro e ambiental</p>
+                        <h4 id="benef6-title">Resultados Mensuráveis</h4>
+                        <p id="benef6-desc">KPIs claros, dashboards em tempo real e relatórios periódicos sobre impacto financeiro e ambiental</p>
                     </div>
                 </div>
             </div>
@@ -1098,11 +1108,11 @@
     <section id="contato" class="cta-section">
         <div class="section-container">
             <div class="cta-box reveal">
-                <h2>Pronto para Transformar sua IES?</h2>
-                <p>Solicite agora uma análise completa e descubra o potencial de geração de créditos de carbono e diversificação de receita da sua instituição. Nossa equipe de especialistas está pronta para atendê-lo.</p>
+                <h2 id="cta-title">Pronto para Transformar sua IES?</h2>
+                <p id="cta-desc">Solicite agora uma análise completa e descubra o potencial de geração de créditos de carbono e diversificação de receita da sua instituição. Nossa equipe de especialistas está pronta para atendê-lo.</p>
                 <button class="btn-primary" onclick="solicitarRelatorio()" style="font-size: 1.2rem; padding: 1.3rem 3.5rem;">
                     <span>📊</span>
-                    <span>Solicite seu Relatório Gratuito</span>
+                    <span id="cta-btn">Solicite seu Relatório Gratuito</span>
                 </button>
             </div>
         </div>
@@ -1113,7 +1123,7 @@
         <div class="footer-content">
             <div class="footer-about">
                 <h3>TYMA</h3>
-                <p>Consultoria especializada em sustentabilidade e créditos de carbono para Instituições de Ensino Superior. Transformando desperdícios em receita adicional.</p>
+                <p id="footer-about">Consultoria especializada em sustentabilidade e créditos de carbono para Instituições de Ensino Superior. Transformando desperdícios em receita adicional.</p>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook">📘</a>
                     <a href="#" aria-label="LinkedIn">🔗</a>
@@ -1154,10 +1164,164 @@
         </div>
     </footer>
 
-    <script>
-        function solicitarRelatorio() {
-            alert('🎉 Obrigado pelo interesse na TYMA Consultoria!\n\nNossa equipe entrará em contato em até 24h para agendar sua análise personalizada.\n\n📋 Para agilizar o processo, tenha em mãos:\n\n✓ Dados sobre consumo de recursos da IES\n✓ Informações sobre estrutura e porte\n✓ Principais fontes de emissões e desperdícios\n✓ Objetivos de sustentabilidade e receita\n\nAguardamos ansiosamente para iniciar essa transformação!');
-        }
+        <script>
+                // i18n dictionary
+                const I18N = {
+                    pt: {
+                        title: 'TYMA Consultoria | Créditos de Carbono para Diversificação de Receita',
+                        nav: { sobre: 'Sobre', servicos: 'Serviços', metodologia: 'Metodologia', beneficios: 'Benefícios', cta: 'Solicite seu Relatório' },
+                        hero: { badge: '🌱 INOVAÇÃO EM SUSTENTABILIDADE', title: 'Transforme Sustentabilidade em Nova Receita', subtitle: 'Consultoria especializada em créditos de carbono para Instituições de Ensino Superior. Convertemos desperdícios em receita recorrente com ativos de carbono que sua IES ainda não aproveita.', btn1: 'Solicite seu Relatório', btn2: 'Conheça Nossos Serviços' },
+                        sobre: { tag: 'QUEM SOMOS', title: 'Sobre a TYMA Consultoria', desc: 'Pioneiros em conectar sustentabilidade e créditos de carbono à diversificação de receita no ensino superior brasileiro', cardTitle: 'Nossa Missão', p1: 'A TYMA é uma consultoria especializada em transformar desperdícios de recursos em Instituições de Ensino Superior em oportunidades financeiras por meio de créditos de carbono.', p2: 'Nosso foco é simples: identificamos oportunidades, estruturamos projetos elegíveis e convertimos em créditos de carbono certificados, abrindo uma nova linha de receita para sua IES.', stat1: 'IES Analisadas', stat2: 'Nova fonte de receita', stat3: 'Em Créditos Gerados', stat4: 'Sustentável' },
+                        servicos: { tag: 'SOLUÇÕES', title: 'Nossos Serviços', desc: 'Oferecemos soluções completas e personalizadas para transformar sua IES em referência de sustentabilidade',
+                            s1: { title: 'Diagnóstico Completo', desc: 'Análise detalhada da situação atual da sua IES identificando oportunidades de geração e monetização de créditos de carbono.', li1: 'Auditoria de recursos e energia', li2: 'Identificação de desperdícios', li3: 'Potencial de créditos de carbono', li4: 'Relatório executivo personalizado' },
+                            s2: { title: 'Conexões Estratégicas', desc: 'Para IES de menor porte, conectamos sua instituição com parceiros estratégicos para viabilizar negociações de créditos.', li1: 'Network exclusivo de IES', li2: 'Formação de consórcios sustentáveis', li3: 'Métricas viáveis de negociação', li4: 'Suporte jurídico especializado' },
+                            s3: { title: 'Conversão Financeira', desc: 'Transformamos créditos de carbono em receita: estruturamos a emissão e a venda para gerar caixa novo para a instituição.', li1: 'Gestão completa de créditos', li2: 'Maximização de recursos financeiros', li3: 'Programas de bolsas e auxílios', li4: 'Fomento à pesquisa acadêmica' }
+                        },
+                        metod: { tag: 'COMO FUNCIONA', title: 'Nossa Metodologia', desc: 'Um processo estruturado e comprovado em 4 etapas para garantir resultados excepcionais', s1t: 'Diagnóstico', s1d: 'Análise completa da IES e identificação de todas as oportunidades de sustentabilidade', s2t: 'Estratégia', s2d: 'Desenvolvimento de plano de ação personalizado e metas mensuráveis', s3t: 'Execução', s3d: 'Implementação das melhorias e conversão em créditos de carbono certificados', s4t: 'Resultados', s4d: 'Receita adicional gerada a partir da comercialização dos créditos' },
+                        benef: { tag: 'VANTAGENS', title: 'Por Que Escolher a TYMA?', desc: 'Diferenciais exclusivos que transformam a realidade da sua instituição de ensino',
+                            b1t: 'Diversificação de Receita', b1d: 'Criação de uma nova linha de receita via créditos de carbono, sem necessidade de investimento inicial elevado',
+                            b2t: 'Sustentabilidade Real', b2d: 'Transforme sua IES em referência ambiental e social no ensino superior, com impacto mensurável',
+                            b3t: 'Fomento à Pesquisa', b3d: 'Valorização dos estudantes através de recursos dedicados para projetos acadêmicos e científicos',
+                            b4t: 'Network Estratégico', b4d: 'Acesso exclusivo a uma rede nacional de IES comprometidas com sustentabilidade e inovação',
+                            b5t: 'Plataforma Exclusiva', b5d: 'Sistema proprietário de análise e gestão disponível apenas para clientes TYMA',
+                            b6t: 'Resultados Mensuráveis', b6d: 'KPIs claros, dashboards em tempo real e relatórios periódicos sobre impacto financeiro e ambiental' },
+                        cta: { title: 'Pronto para Transformar sua IES?', desc: 'Solicite agora uma análise completa e descubra o potencial de geração de créditos de carbono e diversificação de receita da sua instituição. Nossa equipe de especialistas está pronta para atendê-lo.', btn: 'Solicite seu Relatório Gratuito' },
+                        footer: { about: 'Consultoria especializada em sustentabilidade e créditos de carbono para Instituições de Ensino Superior. Transformando desperdícios em receita adicional.' },
+                        alert: '🎉 Obrigado pelo interesse na TYMA Consultoria!\n\nNossa equipe entrará em contato em até 24h para agendar sua análise personalizada.\n\n📋 Para agilizar o processo, tenha em mãos:\n\n✓ Dados sobre consumo de recursos da IES\n✓ Informações sobre estrutura e porte\n✓ Principais fontes de emissões e desperdícios\n✓ Objetivos de sustentabilidade e receita\n\nAguardamos ansiosamente para iniciar essa transformação!'
+                    },
+                    en: {
+                        title: 'TYMA Consulting | Carbon Credits for Revenue Diversification',
+                        nav: { sobre: 'About', servicos: 'Services', metodologia: 'Methodology', beneficios: 'Benefits', cta: 'Request Your Report' },
+                        hero: { badge: '🌱 INNOVATION IN SUSTAINABILITY', title: 'Turn Sustainability into New Revenue', subtitle: 'Consulting specialized in carbon credits for Higher Education Institutions. We turn waste into recurring revenue with carbon assets your HEI is not yet leveraging.', btn1: 'Request Your Report', btn2: 'Explore Our Services' },
+                        sobre: { tag: 'ABOUT US', title: 'About TYMA Consulting', desc: 'Pioneers in connecting sustainability and carbon credits to revenue diversification in higher education', cardTitle: 'Our Mission', p1: 'TYMA specializes in turning resource waste in Higher Education Institutions into financial opportunities through carbon credits.', p2: 'Our focus is simple: we identify opportunities, structure eligible projects, and convert them into certified carbon credits, opening a new revenue line for your HEI.', stat1: 'HEIs Analyzed', stat2: 'New revenue stream', stat3: 'Credits Generated', stat4: 'Sustainable' },
+                        servicos: { tag: 'SOLUTIONS', title: 'Our Services', desc: 'End-to-end, tailored solutions to make your HEI a sustainability reference',
+                            s1: { title: 'Comprehensive Diagnosis', desc: 'Detailed analysis of your HEI to identify carbon credit generation and monetization opportunities.', li1: 'Resource and energy audit', li2: 'Waste identification', li3: 'Carbon credit potential', li4: 'Executive report' },
+                            s2: { title: 'Strategic Connections', desc: 'For smaller HEIs, we connect you with strategic partners to enable credit negotiations.', li1: 'Exclusive HEI network', li2: 'Sustainable consortia formation', li3: 'Viable negotiation metrics', li4: 'Specialized legal support' },
+                            s3: { title: 'Financial Conversion', desc: 'We turn carbon credits into revenue: we structure issuance and sales to generate new cash for the institution.', li1: 'End-to-end credit management', li2: 'Maximization of financial returns', li3: 'Scholarship and aid programs', li4: 'Academic research support' }
+                        },
+                        metod: { tag: 'HOW IT WORKS', title: 'Our Methodology', desc: 'A proven 4-step process to ensure outstanding results', s1t: 'Diagnosis', s1d: 'Comprehensive analysis and identification of all sustainability opportunities', s2t: 'Strategy', s2d: 'Tailored action plan and measurable goals', s3t: 'Execution', s3d: 'Implementation and conversion into certified carbon credits', s4t: 'Results', s4d: 'Additional revenue from credit commercialization' },
+                        benef: { tag: 'BENEFITS', title: 'Why Choose TYMA?', desc: 'Exclusive differentiators that transform your institution’s reality',
+                            b1t: 'Revenue Diversification', b1d: 'Create a new revenue line via carbon credits, with no significant upfront investment',
+                            b2t: 'Real Sustainability', b2d: 'Make your HEI a social and environmental reference with measurable impact',
+                            b3t: 'Research Support', b3d: 'Resources dedicated to academic and scientific projects',
+                            b4t: 'Strategic Network', b4d: 'Exclusive access to a national network of HEIs committed to sustainability and innovation',
+                            b5t: 'Exclusive Platform', b5d: 'Proprietary analysis and management system available to TYMA clients only',
+                            b6t: 'Measurable Results', b6d: 'Clear KPIs, real-time dashboards and periodic reports on financial and environmental impact' },
+                        cta: { title: 'Ready to Transform your HEI?', desc: 'Request a full assessment and discover your potential to generate carbon credits and diversify revenue. Our experts are ready to help.', btn: 'Get Your Free Report' },
+                        footer: { about: 'Consulting specialized in sustainability and carbon credits for Higher Education Institutions. Turning waste into additional revenue.' },
+                        alert: '🎉 Thanks for your interest in TYMA!\n\nOur team will contact you within 24h to schedule your personalized assessment.\n\n📋 To speed things up, have at hand:\n\n✓ Resource consumption data\n✓ Structure and size information\n✓ Main emission sources and waste\n✓ Sustainability and revenue goals\n\nWe look forward to starting this transformation!'
+                    }
+                };
+
+                function getLang() { return localStorage.getItem('lang') || 'pt'; }
+                function setLang(lang) { localStorage.setItem('lang', lang); applyI18n(); }
+
+                function applyI18n() {
+                    const lang = getLang();
+                    const t = I18N[lang];
+                    const byId = (id) => document.getElementById(id);
+                    const set = (id, txt) => { const el = byId(id); if (el) el.textContent = txt; };
+                    // reflect language on <html> for a11y/SEO
+                    document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'en');
+                    document.title = t.title;
+                    // nav
+                    set('nav-sobre', t.nav.sobre);
+                    set('nav-servicos', t.nav.servicos);
+                    set('nav-metodologia', t.nav.metodologia);
+                    set('nav-beneficios', t.nav.beneficios);
+                    set('nav-cta', t.nav.cta);
+                    // hero
+                    set('hero-badge', t.hero.badge);
+                    set('hero-title', t.hero.title);
+                    set('hero-subtitle', t.hero.subtitle);
+                    set('hero-btn1', t.hero.btn1);
+                    set('hero-btn2', t.hero.btn2);
+                    // sobre
+                    set('sobre-tag', t.sobre.tag);
+                    set('sobre-title', t.sobre.title);
+                    set('sobre-desc', t.sobre.desc);
+                    set('sobre-card-title', t.sobre.cardTitle);
+                    set('sobre-p1', t.sobre.p1);
+                    set('sobre-p2', t.sobre.p2);
+                    set('stat1-label', t.sobre.stat1);
+                    set('stat2-label', t.sobre.stat2);
+                    set('stat3-label', t.sobre.stat3);
+                    set('stat4-label', t.sobre.stat4);
+                    // serviços
+                    set('servicos-tag', t.servicos.tag);
+                    set('servicos-title', t.servicos.title);
+                    set('servicos-desc', t.servicos.desc);
+                    set('svc1-title', t.servicos.s1.title);
+                    set('svc1-desc', t.servicos.s1.desc);
+                    set('svc1-li1', t.servicos.s1.li1);
+                    set('svc1-li2', t.servicos.s1.li2);
+                    set('svc1-li3', t.servicos.s1.li3);
+                    set('svc1-li4', t.servicos.s1.li4);
+                    set('svc2-title', t.servicos.s2.title);
+                    set('svc2-desc', t.servicos.s2.desc);
+                    set('svc2-li1', t.servicos.s2.li1);
+                    set('svc2-li2', t.servicos.s2.li2);
+                    set('svc2-li3', t.servicos.s2.li3);
+                    set('svc2-li4', t.servicos.s2.li4);
+                    set('svc3-title', t.servicos.s3.title);
+                    set('svc3-desc', t.servicos.s3.desc);
+                    set('svc3-li1', t.servicos.s3.li1);
+                    set('svc3-li2', t.servicos.s3.li2);
+                    set('svc3-li3', t.servicos.s3.li3);
+                    set('svc3-li4', t.servicos.s3.li4);
+                    // metodologia
+                    set('metod-tag', t.metod.tag);
+                    set('metod-title', t.metod.title);
+                    set('metod-desc', t.metod.desc);
+                    set('step1-title', t.metod.s1t);
+                    set('step1-desc', t.metod.s1d);
+                    set('step2-title', t.metod.s2t);
+                    set('step2-desc', t.metod.s2d);
+                    set('step3-title', t.metod.s3t);
+                    set('step3-desc', t.metod.s3d);
+                    set('step4-title', t.metod.s4t);
+                    set('step4-desc', t.metod.s4d);
+                    // benefícios
+                    set('benef-tag', t.benef.tag);
+                    set('benef-title', t.benef.title);
+                    set('benef-desc', t.benef.desc);
+                    set('benef1-title', t.benef.b1t);
+                    set('benef1-desc', t.benef.b1d);
+                    set('benef2-title', t.benef.b2t);
+                    set('benef2-desc', t.benef.b2d);
+                    set('benef3-title', t.benef.b3t);
+                    set('benef3-desc', t.benef.b3d);
+                    set('benef4-title', t.benef.b4t);
+                    set('benef4-desc', t.benef.b4d);
+                    set('benef5-title', t.benef.b5t);
+                    set('benef5-desc', t.benef.b5d);
+                    set('benef6-title', t.benef.b6t);
+                    set('benef6-desc', t.benef.b6d);
+                    // CTA
+                    set('cta-title', t.cta.title);
+                    set('cta-desc', t.cta.desc);
+                    set('cta-btn', t.cta.btn);
+                    // footer
+                    set('footer-about', t.footer.about);
+
+                    // Toggle visuals
+                    const ptBtn = document.getElementById('lang-pt');
+                    const enBtn = document.getElementById('lang-en');
+                    if (ptBtn && enBtn) {
+                        if (lang === 'pt') {
+                            ptBtn.style.background = 'rgba(255,255,255,0.2)'; ptBtn.style.color = '#fff';
+                            enBtn.style.background = 'transparent'; enBtn.style.color = 'rgba(255,255,255,0.9)';
+                        } else {
+                            enBtn.style.background = 'rgba(255,255,255,0.2)'; enBtn.style.color = '#fff';
+                            ptBtn.style.background = 'transparent'; ptBtn.style.color = 'rgba(255,255,255,0.9)';
+                        }
+                    }
+                }
+
+                function solicitarRelatorio() {
+                    const lang = getLang();
+                    alert(I18N[lang].alert);
+                }
 
         // Scroll suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1196,6 +1360,13 @@
 
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll(); // Initial check
+
+        // i18n init
+        applyI18n();
+        const ptBtn = document.getElementById('lang-pt');
+        const enBtn = document.getElementById('lang-en');
+        if (ptBtn) ptBtn.addEventListener('click', () => setLang('pt'));
+        if (enBtn) enBtn.addEventListener('click', () => setLang('en'));
     </script>
 </body>
 </html>
