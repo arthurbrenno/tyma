@@ -115,6 +115,30 @@
 								<form id="lead-form" name="lead" method="POST" class="space-y-3" novalidate>
 									<!-- Honeypot simples anti-bot -->
 									<input type="text" name="bot-field" class="hidden" tabindex="-1" autocomplete="off" />
+
+									<!-- Tipo de projeto -->
+									<div>
+										<label for="project-type" class="block text-sm text-sub/90 mb-2">Qual o tipo de projeto? <span class="text-danger">*</span></label>
+										<div class="relative">
+											<select id="project-type" name="tipoProjeto" required aria-describedby="type-error"
+												class="w-full h-14 rounded-2xl bg-white/5 text-text px-5 pr-12 outline-none border border-white/10 focus:border-brand/50 focus:ring-4 focus:ring-brand/20 transition-all">
+												<option value="" selected disabled hidden>Selecione uma opção</option>
+												<option>Floresta</option>
+												<option>Plantação</option>
+												<option>Reserva</option>
+												<option>Energia Eólica</option>
+												<option>Solar</option>
+												<option>Biomassa Renovável</option>
+												<option>Metano Evitado</option>
+												<option>Outros</option>
+											</select>
+											<!-- caret -->
+											<div class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sub/70" aria-hidden="true">
+												<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+											</div>
+										</div>
+										<p id="type-error" class="mt-2 text-sm text-danger hidden">Selecione o tipo de projeto.</p>
+									</div>
 					<div class="relative group">
 						<label for="email" class="sr-only">Email institucional</label>
 												<input id="email" name="email" type="email" inputmode="email" autocomplete="email"
@@ -182,9 +206,11 @@
 			const $ = (id) => document.getElementById(id);
 			const form = $('lead-form');
 			const emailInput = $('email');
+			const projectTypeSelect = $('project-type');
 			const emailValidIcon = $('email-valid');
 			const emailInvalidIcon = $('email-invalid');
 			const emailError = $('email-error');
+			const typeError = $('type-error');
 			const submitBtn = $('submit-btn');
 			const btnLabel = $('btn-label');
 			const btnSpinner = $('btn-spinner');
@@ -213,6 +239,10 @@
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 			function isValidEmail(value) {
 				return emailRegex.test(String(value).trim());
+			}
+
+			function isValidType(value) {
+				return !!value && value.trim() !== '';
 			}
 
 			function setFieldState({ valid = null, message = '' } = {}) {
@@ -264,13 +294,14 @@
 							// 1) Substitua seu email abaixo. Ex.: "contato@minhaies.com.br"
 							const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/08e3b8ab3d4bd71dd2c1ec8e86a18110';
 
-							async function submitViaFormSubmit(email) {
+							async function submitViaFormSubmit(email, projectType) {
 								try {
 									if (FORMSUBMIT_ENDPOINT.includes('08e3b8ab3d4bd71dd2c1ec8e86a18110')) {
 										console.warn('Defina seu email em FORMSUBMIT_ENDPOINT para ativar a captura.');
 									}
 									const payload = {
 										email,
+										tipoProjeto: projectType,
 										userAgent: navigator.userAgent,
 										referrer: document.referrer || '',
 										// Campos reservados do FormSubmit (opcionais): _subject, _captcha, _template, _next
@@ -300,18 +331,33 @@
 				setFieldState({ valid: isValidEmail(v) });
 			});
 
+				projectTypeSelect.addEventListener('change', () => {
+					if (isValidType(projectTypeSelect.value)) {
+						typeError.classList.add('hidden');
+					} else {
+						typeError.classList.remove('hidden');
+					}
+				});
+
 					form.addEventListener('submit', async (e) => {
 				e.preventDefault();
 				const email = String(emailInput.value).trim();
+				const projectType = String(projectTypeSelect.value || '').trim();
 				if (!isValidEmail(email)) {
 					setFieldState({ valid: false });
 					emailInput.focus();
 					return;
 				}
 
+				if (!isValidType(projectType)) {
+					typeError.classList.remove('hidden');
+					projectTypeSelect.focus();
+					return;
+				}
+
 				setFieldState({ valid: true });
 				setLoading(true);
-								const { success } = await submitViaFormSubmit(email);
+								const { success } = await submitViaFormSubmit(email, projectType);
 				if (success) {
 					setSuccess();
 				} else {
