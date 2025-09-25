@@ -111,12 +111,10 @@
 					</p>
 				</header>
 
-						<!-- Formulário (Netlify Forms) -->
-						<form id="lead-form" name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-3" novalidate>
-							<input type="hidden" name="form-name" value="lead" />
-							<p class="hidden">
-								<label>Não preencha: <input name="bot-field" /></label>
-							</p>
+								<!-- Formulário (GitHub Pages + FormSubmit) -->
+								<form id="lead-form" name="lead" method="POST" class="space-y-3" novalidate>
+									<!-- Honeypot simples anti-bot -->
+									<input type="text" name="bot-field" class="hidden" tabindex="-1" autocomplete="off" />
 					<div class="relative group">
 						<label for="email" class="sr-only">Email institucional</label>
 												<input id="email" name="email" type="email" inputmode="email" autocomplete="email"
@@ -262,29 +260,38 @@
 				successBox.classList.remove('hidden');
 			}
 
-					// Submissão para Netlify Forms
-					function encodeFormData(data) {
-						return new URLSearchParams(data).toString();
-					}
+							// Submissão via FormSubmit (funciona em GitHub Pages)
+							// 1) Substitua seu email abaixo. Ex.: "contato@minhaies.com.br"
+							const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/arthurbreno009@gmail.com';
 
-					async function submitToNetlify(formEl) {
-						const fd = new FormData(formEl);
-						if (!fd.get('form-name')) fd.append('form-name', formEl.getAttribute('name') || 'lead');
-						// Inclui metadados úteis (não são exibidos no formulário, mas vão para o registro)
-						fd.append('userAgent', navigator.userAgent);
-						fd.append('referrer', document.referrer || '');
-						try {
-							await fetch('/', {
-								method: 'POST',
-								headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-								body: encodeFormData(fd)
-							});
-							return { success: true };
-						} catch (err) {
-							console.error(err);
-							return { success: false };
-						}
-					}
+							async function submitViaFormSubmit(email) {
+								try {
+									if (FORMSUBMIT_ENDPOINT.includes('arthurbreno009@gmail.com')) {
+										console.warn('Defina seu email em FORMSUBMIT_ENDPOINT para ativar a captura.');
+									}
+									const payload = {
+										email,
+										userAgent: navigator.userAgent,
+										referrer: document.referrer || '',
+										// Campos reservados do FormSubmit (opcionais): _subject, _captcha, _template, _next
+										_subject: 'Novo lead (IES) — Landing',
+										_captcha: false
+									};
+									const res = await fetch(FORMSUBMIT_ENDPOINT, {
+										method: 'POST',
+										headers: {
+											'Content-Type': 'application/json',
+											'Accept': 'application/json'
+										},
+										body: JSON.stringify(payload)
+									});
+									if (!res.ok) throw new Error('Falha ao enviar');
+									return { success: true };
+								} catch (err) {
+									console.error(err);
+									return { success: false };
+								}
+							}
 
 			// Eventos
 			emailInput.addEventListener('input', () => {
@@ -304,7 +311,7 @@
 
 				setFieldState({ valid: true });
 				setLoading(true);
-						const { success } = await submitToNetlify(form);
+								const { success } = await submitViaFormSubmit(email);
 				if (success) {
 					setSuccess();
 				} else {

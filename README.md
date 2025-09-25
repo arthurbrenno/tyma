@@ -4,21 +4,25 @@ Uma landing page mobile-first, minimalista e rápida para captar emails de gesto
 
 ## 1) Como funciona
 - Single file: `index.html` com Tailwind via CDN e JS vanilla.
-- Persistência de leads sem backend próprio usando Netlify Forms.
+- Persistência de leads sem backend: recomendado para GitHub Pages é FormSubmit (sem servidor, sem contas complexas).
+- Alternativa: Netlify Forms (se publicar no Netlify).
 - Micro-interações discretas (fade-in, ícone de validação, spinner).
 
-## 2) Persistência mais simples: Netlify Forms
+## 2) GitHub Pages + FormSubmit (recomendado)
 
-Você não precisa configurar planilha nem backend. Ao publicar no Netlify, os envios ficam visíveis no painel (Forms → Submissions) e você pode exportar CSV, receber notificações por email ou integrar com Zapier.
-
-O que já está pronto no `index.html`:
-- `<form name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field">`
-- Campo oculto `form-name`, honeypot, e submissão manual via `fetch('/')` com `application/x-www-form-urlencoded`.
+FormSubmit entrega os envios do formulário no seu email, sem servidor. Opções: resposta automática, templates, e painel (conta opcional).
 
 Passos:
-1. Crie um site no Netlify e faça o deploy desta pasta.
-2. Acesse Netlify → Forms. Você verá o formulário `lead` detectado automaticamente após o primeiro envio.
-3. Opcional: ative notificações por email, webhooks, ou exporte CSV.
+1. No `index.html`, procure por `FORMSUBMIT_ENDPOINT` e substitua `SEU_EMAIL_AQUI` pelo seu email (ex.: contato@sua-empresa.com).
+2. Faça o deploy no GitHub Pages (repositório → Settings → Pages → Branch main → root).
+3. Abra a landing e faça um teste: você deverá receber o email.
+
+Opções úteis do FormSubmit já incluídas:
+- `_subject`: assunto do email
+- `_captcha: false`: desativa captcha (mantenha honeypot)
+
+Segurança/Privacidade:
+- Não publique tokens pessoais em repositórios públicos. Não é necessário token para FormSubmit.
 
 ## 3) Rodar localmente
 Basta abrir `index.html` no navegador (duplo clique ou via servidor estático). Em macOS, no Terminal:
@@ -30,8 +34,9 @@ python3 -m http.server 5173
 ```
 
 ## 4) Deploy
-- Netlify (recomendado para Forms): arraste a pasta (ou conecte ao repositório). O formulário funciona automaticamente.
-- Vercel/Outros: funcionará visualmente, mas o Netlify Forms não processa fora do Netlify.
+- GitHub Pages: simples e gratuito; use FormSubmit.
+- Netlify: se preferir painel de submissões nativo, use Netlify Forms.
+- Vercel: se quiser evoluir para backend (API Routes) depois, é uma boa opção.
 
 ## 5) Personalização rápida
 - Logo: substitua `logo.png`. O layout aplica leve "glow" para melhorar contraste.
@@ -45,10 +50,11 @@ python3 -m http.server 5173
 - Inputs com `type="email"` e `inputmode="email"` para mobile.
 
 ## 7) Checklist antes de apresentar
-- [ ] Deploy no Netlify concluído.
-- [ ] Teste de envio: verifique a submissão em Netlify → Forms.
+- [ ] Deploy no GitHub Pages ativo.
+- [ ] `FORMSUBMIT_ENDPOINT` atualizado com seu email.
+- [ ] Teste de envio recebido na caixa de entrada.
 - [ ] Mobile: layout e tipografia confortáveis (iOS/Android).
-- [ ] Animações suaves (transform/opacity apenas).
+- [ ] Animações suaves e sem layout shift.
 - [ ] Link de produção pronto para o pitch.
 
 ---
